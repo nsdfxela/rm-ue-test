@@ -1,0 +1,13 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{D9E8705A-4204-37F4-8826-7BA0FC14F1E0}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "RickAndMorty",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
