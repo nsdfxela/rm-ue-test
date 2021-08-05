@@ -39,7 +39,16 @@ void URmRestLibrary::GetAllCharactersInfo(const FString& CharacterApiUrl , FAllC
             OnComplete.ExecuteIfBound(Result, 0);
         });
     Request->ProcessRequest();
+}
 
+void URmRestLibrary::GetFile(const FString& FileUrl, FFileRequestCompleteDelegate OnComplete)
+{
+    auto Request = GetApiRequest(FileUrl);
+    Request->OnProcessRequestComplete().BindLambda([OnComplete](FHttpRequestPtr HttpRequest, FHttpResponsePtr Response, bool bWasSuccessful)
+        {
+            OnComplete.ExecuteIfBound(Response->GetContent(), 0);
+        });
+    Request->ProcessRequest();
 }
 
 void URmRestLibrary::GetCharacterInfo(const FString& CharacterApiUrl, int CharacterId,

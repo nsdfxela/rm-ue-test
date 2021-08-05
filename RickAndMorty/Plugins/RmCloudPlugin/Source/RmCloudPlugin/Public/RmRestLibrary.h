@@ -11,6 +11,8 @@
 DECLARE_DELEGATE_TwoParams(FApiRequestCompleteDelegate, FApiDto, int32);
 DECLARE_DELEGATE_TwoParams(FAllCharactersRequestCompleteDelegate, FCharactersInfoDto, int32);
 DECLARE_DELEGATE_TwoParams(FCharacterRequestCompleteDelegate, FCharacterDto, int32);
+DECLARE_DELEGATE_TwoParams(FFileRequestCompleteDelegate, TArray<uint8>, int32);
+
 
 UCLASS()
 class URmRestLibrary : public UBlueprintFunctionLibrary
@@ -21,4 +23,6 @@ public:
     static void GetApiInfo(FApiRequestCompleteDelegate OnComplete);
     static void GetAllCharactersInfo(const FString& CharacterApiUrl, FAllCharactersRequestCompleteDelegate OnComplete);
     static void GetCharacterInfo(const FString& CharacterApiUrl, int CharacterId, FCharacterRequestCompleteDelegate OnComplete);
+    static void GetFile(const FString &FileUrl, FFileRequestCompleteDelegate OnComplete);
+
 };
