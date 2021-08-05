@@ -22,5 +22,4 @@ bool JsonUtils::ParseDto(const FString& Json, FCharacterDto& Result)
     }
 
     return false;
-    return false;
 }
