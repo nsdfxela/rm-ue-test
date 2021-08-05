@@ -24,6 +24,10 @@ struct FCharacterDto
     FString Image;
     UPROPERTY(BlueprintReadWrite, Category = "Default")
     FString Url;
+    UPROPERTY(BlueprintReadWrite, Category = "Default")
+    FString Location;
+    UPROPERTY(BlueprintReadWrite, Category = "Default")
+    FString Origin;
     
 };
 

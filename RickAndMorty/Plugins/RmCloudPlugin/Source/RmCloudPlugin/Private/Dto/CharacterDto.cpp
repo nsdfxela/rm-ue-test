@@ -15,6 +15,8 @@ bool JsonUtils::ParseDto(const FString& Json, FCharacterDto& Result)
         Result.Image = JsonObject->GetStringField("image");
         Result.Url = JsonObject->GetStringField("url");
 
+        Result.Origin = JsonObject->GetObjectField("origin")->GetStringField("name");
+        Result.Location = JsonObject->GetObjectField("location")->GetStringField("name");
 
         return true;
     }

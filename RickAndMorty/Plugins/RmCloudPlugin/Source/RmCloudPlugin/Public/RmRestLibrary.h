@@ -24,5 +24,4 @@ public:
     static void GetAllCharactersInfo(const FString& CharacterApiUrl, FAllCharactersRequestCompleteDelegate OnComplete);
     static void GetCharacterInfo(const FString& CharacterApiUrl, int CharacterId, FCharacterRequestCompleteDelegate OnComplete);
     static void GetFile(const FString &FileUrl, FFileRequestCompleteDelegate OnComplete);
-
 };
