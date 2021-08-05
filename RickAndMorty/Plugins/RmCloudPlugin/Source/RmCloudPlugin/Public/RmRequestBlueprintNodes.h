@@ -9,7 +9,8 @@
 #include "RmRequestBlueprintNodes.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FAsyncApiRequestCompleteDelegate, const FApiDto&, Api, int32, Code);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FAsyncAllCharactersRequestCompleteDelegate, const FCharactersInfoDto&, Api, int32, Code);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FAsyncAllCharactersRequestCompleteDelegate, const FCharactersInfoDto&, CharactersInfo, int32, Code);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FAsyncCharacterRequestCompleteDelegate, const FCharacterDto&, Character, int32, Code);
 
 
 UCLASS()
@@ -40,4 +41,22 @@ protected:
     UPROPERTY()
     FString CharacterApiUrl;
     void OnComplete(FCharactersInfoDto Dto, int32 Code);
+};
+
+UCLASS()
+class UAsyncGetCharacterInfo : public UBlueprintAsyncActionBase
+{
+    GENERATED_BODY()
+public:
+    UFUNCTION(BlueprintCallable, meta = (BlueprintInternalUseOnly = "true", WorldContext = "WorldContextObject"), Category = "RickAndMorty|Cloud")
+    static UAsyncGetCharacterInfo* AsyncGetCharacterInfo(UObject* WorldContextObject, const FString& CharacterApiUrl, int CharacterId);
+    virtual void Activate() override;
+    UPROPERTY(BlueprintAssignable)
+    FAsyncCharacterRequestCompleteDelegate Completed;
+protected:
+    UPROPERTY()
+    FString CharacterApiUrl;
+    UPROPERTY()
+    int CharacterId;
+    void OnComplete(FCharacterDto Dto, int32 Code);
 };

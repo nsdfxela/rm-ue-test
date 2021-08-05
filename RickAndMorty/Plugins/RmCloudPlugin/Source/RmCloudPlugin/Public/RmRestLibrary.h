@@ -20,5 +20,5 @@ public:
     static const FString ROOT_API;
     static void GetApiInfo(FApiRequestCompleteDelegate OnComplete);
     static void GetAllCharactersInfo(const FString& CharacterApiUrl, FAllCharactersRequestCompleteDelegate OnComplete);
-    static void GetCharacterInfo(const FString& CharacterApiUrl, FCharacterRequestCompleteDelegate OnComplete);
+    static void GetCharacterInfo(const FString& CharacterApiUrl, int CharacterId, FCharacterRequestCompleteDelegate OnComplete);
 };

@@ -37,3 +37,22 @@ void UAsyncGetAllCharactersInfo::Activate()
     URmRestLibrary::GetAllCharactersInfo(CharacterApiUrl, FAllCharactersRequestCompleteDelegate::CreateUObject(this, &UAsyncGetAllCharactersInfo::OnComplete));
 }
 
+void UAsyncGetCharacterInfo::OnComplete(FCharacterDto Dto, int32 Code)
+{
+    Completed.Broadcast(Dto, Code);
+    SetReadyToDestroy();
+}
+
+void UAsyncGetCharacterInfo::Activate()
+{
+    URmRestLibrary::GetCharacterInfo(CharacterApiUrl, CharacterId, FCharacterRequestCompleteDelegate::CreateUObject(this, &UAsyncGetCharacterInfo::OnComplete));
+}
+
+UAsyncGetCharacterInfo* UAsyncGetCharacterInfo::AsyncGetCharacterInfo(UObject* WorldContextObject,
+    const FString& CharacterApiUrl, int CharacterId)
+{
+    UAsyncGetCharacterInfo* Action = NewObject<UAsyncGetCharacterInfo>();
+    Action->CharacterApiUrl = CharacterApiUrl;
+    Action->CharacterId = CharacterId;
+    return Action;
+}

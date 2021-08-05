@@ -42,10 +42,11 @@ void URmRestLibrary::GetAllCharactersInfo(const FString& CharacterApiUrl , FAllC
 
 }
 
-void URmRestLibrary::GetCharacterInfo(const FString& CharacterApiUrl,
+void URmRestLibrary::GetCharacterInfo(const FString& CharacterApiUrl, int CharacterId,
     FCharacterRequestCompleteDelegate OnComplete)
 {
-    auto Request = GetApiRequest(CharacterApiUrl);
+    FString Url = FString::Printf(TEXT("%s/%d"), *CharacterApiUrl, CharacterId);
+    auto Request = GetApiRequest(Url);
     Request->OnProcessRequestComplete().BindLambda([OnComplete](FHttpRequestPtr HttpRequest, FHttpResponsePtr Response, bool bWasSuccessful)
         {
             FString Content = Response->GetContentAsString();
